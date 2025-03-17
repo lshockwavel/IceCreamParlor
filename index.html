@@ -4,10 +4,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"
+    defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>🍦 Ice Cream Parlor</title>
 </head>
 
 <body>
+  <div class="container-fluid">
+    <div class="row">
+      <section class="col-5">
+        <div class="px-3 py-5">
+          <!-- REVIEW  tables and how they work, think I'm on the right page but hopefully they are correct-->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Each</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="cart">
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row" colspan="4">
+                  <div class="text-end px-3">
+                    <p>
+                      Total: <span id="total">$0.00</span>
+                    </p>
+                    <button onclick="checkout()" class="btn btn-primary" type="button">Pay</button>
+                  </div>
+                </th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- TODO adding ice cream pics -->
+        <div class="row">
+          <p class="px-3">TEST: Adding scoops here</p>
+        </div>
+      </section>
+      <section class="col-7">
+        <div class="row">
+          <h1>Toppings</h1>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.SPRINKLES)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://plus.unsplash.com/premium_photo-1695868328502-81c9e0468b74?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Sprinkles">
+              </div>
+              <p class="item-price-info"> Sprinkles $2</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.CHOCOLATECHIPS)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://images.unsplash.com/photo-1591798153699-4b0bd9d57e79?q=80&w=1938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Chocolate Chips">
+              </div>
+              <p class="item-price-info"> Chocolate Chips $3</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.GUMMYWORMS)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://images.unsplash.com/photo-1516747773440-e114ee0d3c07?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Gummy Worms">
+              </div>
+              <p class="item-price-info"> Gummy Worms $2</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h1>Vessels</h1>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.WAFFLECONE)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://images.unsplash.com/photo-1559703248-dcaaec9fab78?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Waffle Cone">
+              </div>
+              <p class="item-price-info"> Waffle Cone $3</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.WAFFLEBOWL)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://media.istockphoto.com/id/816249170/photo/waffle-bowl-on-white-background.jpg?s=2048x2048&w=is&k=20&c=luTprQsYDB4FSUpa-3y70KWXoX-DsEqfu--RN0G3hME="
+                  alt="Waffle Bowl">
+              </div>
+              <p class="item-price-info"> Waffle Bowl $4</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.DIPPEDCONE)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://plus.unsplash.com/premium_photo-1664297732147-bab0ac7c0073?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Dipped Cone">
+              </div>
+              <p class="item-price-info"> Dipped Cone $5</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h1>Ice Cream</h1>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.VANILLA)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://images.unsplash.com/photo-1549395156-e0c1fe6fc7a5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Vanilla">
+              </div>
+              <p class="item-price-info"> Vanilla $3</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.CHOCOLATE)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Chocolate">
+              </div>
+              <p class="item-price-info"> Chocolate $4</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="menu">
+              <div onclick="order(ITEM_NAMES.STRAWBERRY)" role="button" title="A little bit of sugar won't hurt...">
+                <img class="fluid-img"
+                  src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Strawberry">
+              </div>
+              <p class="item-price-info"> Strawberry $5</p>
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
